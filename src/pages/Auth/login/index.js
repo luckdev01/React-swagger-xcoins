@@ -74,7 +74,7 @@ class Login extends Component {
                 <div className="auth-messages">
                   {/* As in the signup, we're just using the message and error helpers */}
 
-                  {requesting && <div class="loading"><img src="http://gifimage.net/wp-content/uploads/2017/09/ajax-loading-gif-transparent-background-8.gif"/></div>}
+                  {requesting && <div className="loading"><img src="http://gifimage.net/wp-content/uploads/2017/09/ajax-loading-gif-transparent-background-8.gif"/></div>}
                   {!requesting &&  (
                     <Link to="/signup">Sign up</Link>
                   )}

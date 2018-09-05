@@ -11,7 +11,8 @@ import {
   LOGIN_ERROR,
 } from './constants';
 
-const loginUrl = `http://13.56.148.150:5000/api/User/Login/`;
+// const loginUrl = `http://13.56.148.150:5000/api/User/Login/`;
+const loginUrl = `http://localhost:8080/api/checkuser`;
 
 function loginApi (email, password) {
   // ,{
@@ -19,7 +20,11 @@ function loginApi (email, password) {
   //     return status < 500; // Reject only if the status code is greater than or equal to 500
   //   }
   // }
-  return axios.post(loginUrl,{'email': email,'password':password});
+  return axios.post(loginUrl,{'email': email,'password':password},{
+      validateStatus: function (status) {
+        return status < 500; // Reject only if the status code is greater than or equal to 500
+      }
+    });
 }
 
 function* logout () {
@@ -36,12 +41,16 @@ function* loginFlow (email, password) {
     token = yield call(loginApi, email, password)
 
     // .. also inform redux that our login was successful
+    console.log("---token",token)
     if(token.data!=="incorrect") {
       yield put({ type: LOGIN_SUCCESS});
       localStorage.setItem('loggedin', email);
       yield put(push('/app'));
     }
-    else yield put({ type: LOGIN_ERROR, error:"Email or password is incorrect." });
+    else {
+      console.log("EmailPWDincorrect")
+      yield put({ type: LOGIN_ERROR, error:"Email or password is incorrect." });
+    }
 
     // set a stringified version of our token to localstorage on our domain
     localStorage.setItem('token', JSON.stringify(token))

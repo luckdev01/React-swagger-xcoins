@@ -41,14 +41,12 @@ function* loginFlow (email, password) {
     token = yield call(loginApi, email, password)
 
     // .. also inform redux that our login was successful
-    console.log("---token",token)
     if(token.data!=="incorrect") {
       yield put({ type: LOGIN_SUCCESS});
       localStorage.setItem('loggedin', email);
       yield put(push('/app'));
     }
     else {
-      console.log("EmailPWDincorrect")
       yield put({ type: LOGIN_ERROR, error:"Email or password is incorrect." });
     }
 

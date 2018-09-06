@@ -13,6 +13,7 @@ import App from './pages/App';
 import registerServiceWorker from './registerServiceWorker';
 
 import Login from './pages/Auth/login'
+import Signup from './pages/Auth/signup'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Route exact path="/" component={Login}/>
       <Route exact path="/app" component={App}/>
       <Route exact path="/login" component={Login}/>
+      <Route exact path="/signup" component={Signup}/>
       </Switch>
       </div>
     </Router>

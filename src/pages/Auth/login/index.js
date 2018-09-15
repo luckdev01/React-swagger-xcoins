@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -6,12 +6,15 @@ import { Link } from 'react-router-dom'
 import './login.css';
 import Messages from '../notifications/Messages'
 import Errors from '../notifications/Errors'
+import GLogin from './googlelogin';
 
 import loginRequest from './actions'
 import 'bootstrap/dist/css/bootstrap.css'
 
 class Login extends Component {
-  
+  constructor (props) {
+    super(props);
+  };
   submit = (values) => {
     this.props.loginRequest(values)
   }
@@ -80,6 +83,7 @@ class Login extends Component {
                   )}
                 </div>
               </div>
+              <GLogin history = { this.props.history }/>
             </form>
             
           </div>

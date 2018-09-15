@@ -34,8 +34,8 @@ function* signupFlow (action) {
     // when the above api call has completed it will "put",
     // or dispatch, an action of type SIGNUP_SUCCESS with
     // the successful response.
-    if(response.data!=="duplicate") yield put({ type: SIGNUP_SUCCESS, response: response.data });
-    else yield put({ type: SIGNUP_ERROR, error:"Account is already exist." });
+    if(response.data.msg) yield put({ type: SIGNUP_ERROR, error: response.data.msg });
+    else yield put({ type: SIGNUP_SUCCESS, response: response.data.user });
 
   } catch (error) {
     // if the api call fails, it will "put" the SIGNUP_ERROR

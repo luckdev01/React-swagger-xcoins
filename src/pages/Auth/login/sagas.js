@@ -41,13 +41,13 @@ function* loginFlow (email, password) {
     token = yield call(loginApi, email, password)
 
     // .. also inform redux that our login was successful
-    if(token.data!=="incorrect") {
+    if(token.data.msg) {
+      yield put({ type: LOGIN_ERROR, error: token.data.msg });
+    }
+    else {
       yield put({ type: LOGIN_SUCCESS});
       localStorage.setItem('loggedin', email);
       yield put(push('/app'));
-    }
-    else {
-      yield put({ type: LOGIN_ERROR, error:"Email or password is incorrect." });
     }
 
     // set a stringified version of our token to localstorage on our domain
@@ -61,7 +61,7 @@ function* loginFlow (email, password) {
     }
   }
 
-  return token
+  return token;
 }
 
 // Our watcher (saga).  It will watch for many things.

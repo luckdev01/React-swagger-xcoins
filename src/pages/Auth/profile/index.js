@@ -15,11 +15,9 @@ class Profile extends Component {
  
 	handleUploadImage = (ev) => {
 		ev.preventDefault();
-	alert(11)
 		var data = new FormData();
 		data.append('file', this.uploadInput.files[0]);
 		data.append('filename', this.fileName.value);
-		console.log(data);
  
 		axios.post('http://localhost:8080/api/upload', data, {
 			headers: { "X-Requested-With": "XMLHttpRequest" },

@@ -7,6 +7,9 @@ class App extends Component {
   gotoprofile = () => {
     this.props.history.push("/profile");
   }
+  gotoproducts = () => {
+    this.props.history.push("/products");
+  }
   
   render() {
     return (
@@ -19,8 +22,9 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <button onClick={this.gotoprofile}>Profile</button>
+        <button onClick={this.gotoproducts}>Products</button>
       </div>
-    );
+    ); 
   }
 }
 

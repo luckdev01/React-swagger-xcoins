@@ -15,6 +15,7 @@ import registerServiceWorker from './registerServiceWorker';
 import Login from './pages/Auth/login'
 import Signup from './pages/Auth/signup'
 import Profile from './pages/Auth/profile'
+import ProductsMain from './pages/Products/main'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -25,6 +26,7 @@ ReactDOM.render(
       <Route exact path="/" component={Login}/>
       <Route exact path="/app" component={App}/>
       <Route exact path="/profile" component={Profile}/>
+      <Route exact path="/products" component={ProductsMain}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/signup" component={Signup}/>
       </Switch>

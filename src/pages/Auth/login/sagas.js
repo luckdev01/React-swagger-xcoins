@@ -24,6 +24,12 @@ function loginApi (email, password) {
       validateStatus: function (status) {
         return status < 500; // Reject only if the status code is greater than or equal to 500
       }
+    }).then(function(resp){
+      console.log('resp1',resp)
+      return resp;
+
+    }).catch(function(err){
+      return err;
     });
 }
 
@@ -35,23 +41,24 @@ function* logout () {
 }
 
 function* loginFlow (email, password) {
-  let token
+  let token;
   try {
     // try to call to our loginApi() function.  
-    token = yield call(loginApi, email, password)
+    var response = yield call(loginApi, email, password);
 
     // .. also inform redux that our login was successful
-    if(token.data.msg) {
-      yield put({ type: LOGIN_ERROR, error: token.data.msg });
+    if(response.data.state !== "ok") {
+      yield put({ type: LOGIN_ERROR, error: response.data.msg });
     }
     else {
+      token = response.headers['x-auth-token'];
       yield put({ type: LOGIN_SUCCESS});
-      localStorage.setItem('loggedin', email);
+      localStorage.setItem('token', token);
       yield put(push('/app'));
     }
 
     // set a stringified version of our token to localstorage on our domain
-    localStorage.setItem('token', JSON.stringify(token))
+    //localStorage.setItem('token', JSON.stringify(token))
 
   } catch (error) {
     yield put({ type: LOGIN_ERROR, error })
@@ -60,7 +67,6 @@ function* loginFlow (email, password) {
       yield put(push('/login'));
     }
   }
-
   return token;
 }
 

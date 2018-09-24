@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import axios from 'axios';
-import {date2str} from './func';
+import {date2str, diffhours} from './func';
 // import './MainApp.css';
 // component that contains all the logic and other smaller components
 // that form the Read Products view
@@ -74,6 +74,11 @@ class ReadOneProductComponent extends Component {
                         <tr>
                             <td>Distance(km)</td>
                             <td>{parseFloat(this.state.distance).toFixed(2)}km</td>
+                        </tr>
+
+                        <tr>
+                            <td>AVG Velocity(km)</td>
+                            <td>{parseFloat(this.state.distance/diffhours(this.state.startdate,this.state.enddate)).toFixed(2)} km/h</td>
                         </tr>
      
                         <tr>

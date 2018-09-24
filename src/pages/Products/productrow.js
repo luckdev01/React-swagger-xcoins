@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {date2str} from './func';
+import {date2str, diffhours} from './func';
 // import './MainApp.css';
 // component that renders a single product
 class ProductRow extends Component {
@@ -9,7 +9,8 @@ class ProductRow extends Component {
                 <td>{this.props.index }</td>
                 <td>{date2str(this.props.product.startdate)}</td>
                 <td>{date2str(this.props.product.enddate)}</td>
-                <td>{parseFloat(this.props.product.distance).toFixed(2)}km</td>
+                <td>{parseFloat(this.props.product.distance).toFixed(2)} km</td>
+                <td>{parseFloat(this.props.product.distance/diffhours(this.props.product.startdate,this.props.product.enddate)).toFixed(2)} km/h</td>
                 <td>{this.props.product.comment}</td>
                 <td>
                     <a href='#'

@@ -19,12 +19,12 @@ class GLogin extends Component{
             mode: 'cors',
             cache: 'default'
         };
-        fetch('http://localhost:8080/api/auth/google', options).then(r => {
-            const token = r.headers.get('x-auth-token');
-            console.log('resp---',token);
-            r.json().then(user => {
+        fetch('http://localhost:8080/api/auth/google', options).then(response => {
+            const token = response.headers.get('x-auth-token');
+            console.log('token---',token);
+            response.json().then(user => {
                 if (token) {
-                  console.log(user);
+                  console.log('user---',user);
                   history.push('/app');
                 }
             });
@@ -34,12 +34,6 @@ class GLogin extends Component{
   render () {
     return (
       <div>
-        {/* <GoogleLogin socialId="421348630681-pmp5kogfu007ojbn4mo4qmq95if7l08a.apps.googleusercontent.com"
-                     className="google-login"
-                     scope="profile"
-                     fetchBasicProfile={false}
-                     responseHandler={this.responseGoogle}
-                     buttonText="Login With Google"/> */}
         <GoogleLogin
                         clientId="421348630681-pmp5kogfu007ojbn4mo4qmq95if7l08a.apps.googleusercontent.com"
                         buttonText="Google Login"

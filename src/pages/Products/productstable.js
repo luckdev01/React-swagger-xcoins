@@ -27,6 +27,7 @@ class ProductsTable extends Component {
                                 <th>StartDate</th>
                                 <th>EndDate</th>
                                 <th>Distance</th>
+                                <th>AVG Velocity</th>
                                 <th>Comment</th>
                                 <th>Action</th>
                             </tr>

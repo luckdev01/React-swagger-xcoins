@@ -29,9 +29,10 @@ class Login extends Component {
       },
     } = this.props
     
-    if(localStorage.getItem('loggedin')){
-      this.props.history.push("/app");
-    }
+    //-----tokenverify-------
+    // if(localStorage.getItem('loggedin')){
+    //   this.props.history.push("/app");
+    // }
 
     return (
       

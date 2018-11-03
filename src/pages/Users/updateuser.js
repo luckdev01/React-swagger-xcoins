@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import axios from 'axios';
-import {Input} from 'reactstrap';
+import {USERROLES,DEFAULTROLE} from './constants';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 // import './MainApp.css';
 // component that renders a single user
@@ -13,9 +15,9 @@ class UpdateUserComponent extends Component {
             id: 0,
             fullname: '',
             email: '',
-            role: '',
+            role: DEFAULTROLE.value,
             successUpdate: null
-        };
+		};
     }
     componentDidMount() {
  
@@ -50,8 +52,8 @@ class UpdateUserComponent extends Component {
     }
 
     // handle role change
-    handleRoleChange = (e) => {
-        this.setState({role: e.target.value});
+    handleRoleChange = (r) => {
+        this.setState({role: r.value});
     }
 
     // handle save button clicked
@@ -141,12 +143,7 @@ class UpdateUserComponent extends Component {
 										<tr>
 											<td>Role</td>
 											<td>
-												<input
-												type='text'
-												className='form-control'
-												value={this.state.role}
-												required
-												onChange={this.handleRoleChange}/>
+											<Dropdown options={USERROLES} onChange={this.handleRoleChange} value={USERROLES[this.state.role]} placeholder="Select an option" />
 											</td>
 										</tr>
 		

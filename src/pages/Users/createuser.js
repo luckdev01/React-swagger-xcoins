@@ -4,8 +4,11 @@ import axios from 'axios';
 import moment from 'moment';
 import {Input} from 'reactstrap';
 import {DatetimePickerTrigger} from 'rc-datetime-picker';
+import Dropdown from 'react-dropdown';
+import {USERROLES,DEFAULTROLE} from './constants';
 import 'rc-datetime-picker/dist/picker.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'react-dropdown/style.css';
 // import './MainApp.css';
 // component that contains all the logic and other smaller components
 // that form the Read Users view
@@ -19,7 +22,7 @@ class CreateUserComponent extends Component {
 				email: '',
 				password: '',
 				passwordconfirm: '',
-				role: '',
+				role: DEFAULTROLE.value,
 				avatarurl: '',
 				successCreation: null
 			};
@@ -54,8 +57,8 @@ class CreateUserComponent extends Component {
 		}
 
 		// handle role change
-		handleRoleChange = (e) => {
-			this.setState({role: e.target.value});
+		handleRoleChange = (r) => {
+			this.setState({role: r.value});
 		}
 
 		// handle save button clicked
@@ -179,12 +182,7 @@ class CreateUserComponent extends Component {
 									<tr>
 											<td>Role</td>
 											<td>
-												<input
-												type='text'
-												className='form-control'
-												value={this.state.role}
-												required
-												onChange={this.handleRoleChange}/>
+												<Dropdown options={USERROLES} onChange={this.handleRoleChange} value={USERROLES[this.state.role]} placeholder="Select an option" />
 											</td>
 									</tr>
 	

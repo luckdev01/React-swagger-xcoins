@@ -8,47 +8,71 @@ class Profile extends Component {
  
 		this.state = {
 			imageURL: '',
+			previewURL: ''
 		};
  
 		this.handleUploadImage = this.handleUploadImage.bind(this);
 	}
- 
+	fileChangedHandler = (event) => {
+		this.setState({previewURL: URL.createObjectURL(event.target.files[0])});
+	}
+	
 	handleUploadImage = (ev) => {
 		ev.preventDefault();
 		var data = new FormData();
-		data.append('file', this.uploadInput.files[0]);
-		data.append('filename', this.fileName.value);
+		data.append('avatar', this.uploadInput.files[0]);
  
 		axios.post('http://localhost:8080/api/upload', data, {
-			headers: { "X-Requested-With": "XMLHttpRequest" },
+			headers: {
+				"X-Requested-With": "XMLHttpRequest",
+				"x-auth-token": localStorage.getItem('token')
+			},
 		}).then((response) => {
-			console.log('rrr',response.data.file)
 			this.setState({ imageURL: 'http://localhost:8080'+response.data.file });
 		});
 	}
+	
+	componentDidMount() {
+
+		const that = this;
+		const getuserUrl = `http://localhost:8080/api/users/readonebytoken`;
+		axios.get(getuserUrl, {
+			headers: {
+				"X-Requested-With": "XMLHttpRequest",
+				"x-auth-token": localStorage.getItem('token')
+			},
+		}).then((response) => {
+				const user = response.data;
+				that.setState({
+					imageURL: 'http://localhost:8080'+user.avatarurl, 
+				});
+		})
+		.catch(function(error){
+						console.log('can not load data',error);
+		});
+
+	}
+
   render() {
 		let avata = "";
     return (
       <div className="Profile">
         <header className="Profile-header">
-          <img src={avata} className="Profile-avata" alt="avata" />
+          <img src={this.state.imageURL} className="Profile-avata" alt="avata" />
           <h1 className="Profile-title">Welcome</h1>
         </header>
         <p className="Profile-intro">
           Please update profile.
         </p>
-				<form onSubmit={this.handleUploadImage}>
+				<form onSubmit={this.handleUploadImage} encType={"multipart/form-data"}>
 					<div>
-						<input ref={(ref) => { this.uploadInput = ref; }} type="file" />
+						<input ref={(ref) => { this.uploadInput = ref; }} type="file" onChange={this.fileChangedHandler}/>
 					</div>
-					<div>
-						<input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter the desired name of file" />
-					</div>
-					<br />
+					
+					<img src={this.state.previewURL} alt="img" />
 					<div>
 						<button>Upload</button>
 					</div>
-					<img src={this.state.imageURL} alt="img" />
 				</form>
       </div>
     );

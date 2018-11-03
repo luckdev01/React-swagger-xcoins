@@ -12,10 +12,11 @@ import store, {history} from './store';
 import App from './pages/App';
 import registerServiceWorker from './registerServiceWorker';
 
-import Login from './pages/Auth/login'
-import Signup from './pages/Auth/signup'
-import Profile from './pages/Auth/profile'
-import ProductsMain from './pages/Products/main'
+import Login from './pages/Auth/login';
+import Signup from './pages/Auth/signup';
+import Profile from './pages/Auth/profile';
+import ProductsMain from './pages/Products/main';
+import UserMain from './pages/Users/main';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -29,6 +30,7 @@ ReactDOM.render(
       <Route exact path="/products" component={ProductsMain}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/signup" component={Signup}/>
+      <Route exact path="/users" component={UserMain}/>
       </Switch>
       </div>
     </Router>

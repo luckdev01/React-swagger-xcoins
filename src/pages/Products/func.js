@@ -3,6 +3,9 @@ export const date2str = (datestr) => {
     return moment(datestr).format('YYYY-MM-DD HH:mm');
 }
 export const diffhours = (startdate, enddate) => {
-    var duration = new Date(enddate).getTime() - new Date(startdate).getTime();//moment.duration(enddate.diff(startdate));
-    return duration/1000/60/60;
+    //var duration = new Date(enddate).getTime() - new Date(startdate).getTime();
+    let s = moment(startdate); //moment.duration(enddate.diff(startdate));
+    let e = moment(enddate);
+
+    return moment.duration(e.diff(s)).asHours();
 }

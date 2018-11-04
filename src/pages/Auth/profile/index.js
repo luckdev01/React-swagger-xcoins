@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Banner from '../../App/banner';
 import axios from 'axios';
 import './profile.css';
 
@@ -61,6 +62,7 @@ class Profile extends Component {
           <img src={this.state.imageURL} className="Profile-avata" alt="avata" />
           <h1 className="Profile-title">Welcome</h1>
         </header>
+
         <p className="Profile-intro">
           Please update profile.
         </p>

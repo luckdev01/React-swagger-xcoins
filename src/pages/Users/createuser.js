@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import axios from 'axios';
-import moment from 'moment';
-import {Input} from 'reactstrap';
-import {DatetimePickerTrigger} from 'rc-datetime-picker';
 import Dropdown from 'react-dropdown';
 import {USERROLES,DEFAULTROLE} from './constants';
 import 'rc-datetime-picker/dist/picker.css';

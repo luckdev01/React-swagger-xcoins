@@ -20,7 +20,7 @@ class UserMain extends Component {
     // used when use clicks something that changes the current mode
     changeAppMode = (newMode, userId) => {
         this.setState({currentMode: newMode});
-            if(userId !== undefined){
+		if(userId !== undefined){
             this.setState({userId: userId}); 
         }
     }

@@ -22,6 +22,32 @@
   font-size: large;
 }
 
+/*-------- banner styles --------------*/
+.Banner {
+  text-align: center;
+}
+
+.Banner-avatar {
+  height: 40px;
+  width: 40px;
+}
+
+.Banner-header {
+  background-color: #222;
+  height: 90px;
+  padding: 20px;
+  color: white;
+}
+
+.Banner-title {
+  font-size: 1.5em;
+}
+
+.Banner-intro {
+  font-size: medium;
+}
+/*-------------------------------------*/
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -1,6 +1,10 @@
+export const REGULAR = 0;
+export const USER = 1;
+export const ADMIN = 2;
+
 export const USERROLES = [
-    { value: '0', label: 'Regular user' },
-    { value: '1', label: 'User manager' },
-    { value: '2', label: 'Admin' }
+    { value: REGULAR, label: 'Regular user' },
+    { value: USER, label: 'User manager' },
+    { value: ADMIN, label: 'Admin' }
 ];
 export const DEFAULTROLE = USERROLES[0];
